@@ -2,14 +2,14 @@
 
 /**
  * @link              http://ecreateinfotech.com/
- * @since             1.0.1
+ * @since             1.0.2
  * @package           Ec_Auto_Tag_Creator
  *
  * @wordpress-plugin
  * Plugin Name:       Auto Tag Creator
  * Plugin URI:        http://ecreateinfotech.com/services/cms-development/wordpress-development/
  * Description:       This plugin automatically creates tags from post title and category, on update or publish..
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            Ecreate Infotech
  * Author URI:        http://ecreateinfotech.com/
  * License:           GPL-2.0+
@@ -26,7 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Currently plugin version. 
  */
-define( 'EC_AUTO_TAG_CREATOR_VERSION', '1.0.1' );
+define( 'EC_AUTO_TAG_CREATOR_VERSION', '1.0.2' );
 
 /**
  * The code that runs during plugin activation.
@@ -62,7 +62,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-ec-auto-tag-creator.php';
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.0.1
+ * @since    1.0.2
  */
 function run_ec_auto_tag_creator() {
 

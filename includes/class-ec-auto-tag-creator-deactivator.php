@@ -5,7 +5,7 @@
  *
  * This class defines all code necessary to run during the plugin's deactivation.
  *
- * @since      1.0.1
+ * @since      1.0.2
  * @package    Ec_Auto_Tag_Creator
  * @subpackage Ec_Auto_Tag_Creator/includes
  * @author     Ecreate Infotech <contact@ecreateinfotech.com>
@@ -18,7 +18,7 @@ class Ec_Auto_Tag_Creator_Deactivator {
 	 *
 	 * Long Description.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.2
 	 */
 	public static function deactivate() {
 		

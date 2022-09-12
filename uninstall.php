@@ -3,7 +3,7 @@
 /**
  * Fired when the plugin is uninstalled.
  * @link       http://ecreateinfotech.com/
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    Ec_Auto_Tag_Creator
  */

@@ -67,7 +67,7 @@
 					</td>
 					<td>
 						<input type="submit" id="submit_settings" class="button-primary button button-hero" onclick="return auto_tag_save_settings();" value="<?php echo __('Save Settings','ec-auto-tag-creator');?>">
-						<img class="loader_image" src="<?php echo plugin_dir_url('ec-auto-tag-creator/admin/images') ?>images/loader.gif">
+						<img class="loader_image" src="<?php echo plugin_dir_url('auto-tag-creator/admin/images') ?>images/loader.gif">
 						<h3><strong><?php echo __('If you want to have same  functionality for other post type as well, please','ec-auto-tag-creator'); ?> <a href="http://ecreateinfotech.com/contact-us/" target="_blank"><?php echo __('contact us','ec-auto-tag-creator'); ?></a> <?php echo __('for any type of custom work.','ec-auto-tag-creator'); ?></strong></h3>
 					</td>
 				</tr>

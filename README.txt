@@ -2,8 +2,8 @@
 Contributors: ecreateinfotech, gb071
 Tags: post tag creator, product tag creator, tag, auto tag, tag creator, tag generator
 Requires at least: 4.6
-Tested up to: 5.5.1
-Stable tag: 1.0.0
+Tested up to: 5.8.1
+Stable tag: 1.0.1
 Requires PHP: 5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -43,7 +43,7 @@ Please contact us <a href="http://ecreateinfotech.com/contact-us/">here</a>.
 No. There is a user-configurable list of ignore words into setting menu, those world will be ignored. There is also setting for no of word length, so if you have set it less then your word which will be also gets ignored.
 
 = Will this plugin overwrite my existing tags? =
-There is a setting for that, if you have enable overwrite option it will overwrite otherwise it will not overwrite.
+This is a setting for that, if you have enable overwrite option it will overwrite otherwise it will not overwrite.
 
 = When are the tags added? At publish or save? =
 Tags are added to the post/product when it is saved, whether as a update or by publishing, but not when the post is autosaved.
@@ -53,10 +53,10 @@ No. It will not handle the process automatically, you need to update older post 
 
 == Screenshots ==
 
-1. settings.png
-2. post.png
+1. Setting screen
+2. Post screen
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.1 =
 * First version.

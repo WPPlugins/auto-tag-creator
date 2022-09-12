@@ -16,7 +16,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -25,7 +25,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -34,7 +34,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
@@ -48,7 +48,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function enqueue_styles() {
 		
@@ -59,7 +59,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Register the JavaScript for the admin area.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function enqueue_scripts() {
 		
@@ -70,7 +70,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Setting menu page for plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function add_setting_menu_page() {
 		add_menu_page(__('Tag Setting', 'ec-auto-tag-creator'),__('Tag Setting', 'ec-auto-tag-creator'),'manage_options','ec-auto-tag-setting',array($this, 'auto_tag_settings_callback'),'dashicons-tag',99);
@@ -79,7 +79,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Setting page form template.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function auto_tag_settings_callback() {
 		
@@ -92,7 +92,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Save setting.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function tag_save_settings_callback() {
 		
@@ -148,7 +148,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Create tags when publishing or updating post.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function create_tags( $post_id ) {
 		
@@ -207,7 +207,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Create tags from title.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function prepare_title_to_tag( $title, $ignore_list, $len ) {
 		
@@ -228,7 +228,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Create tags from category.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function parepare_category_to_tag( $categories, $ignore_list, $len ) {
 		
@@ -252,7 +252,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Create tags from words.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function words_to_tag( $words, $ignore_list, $len ) {
 		
@@ -270,7 +270,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Set created tag by id.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function set_tag( $post_id, $title_tags, $cat_tags, $term, $is_overwrite_tag ) {
 		

@@ -5,7 +5,7 @@
  *
  * This class defines all code necessary to run during the plugin's activation.
  *
- * @since      1.0.0
+ * @since      1.0.1
  * @package    Ec_Auto_Tag_Creator
  * @subpackage Ec_Auto_Tag_Creator/includes
  * @author     Ecreate Infotech <contact@ecreateinfotech.com>
@@ -18,7 +18,7 @@ class Ec_Auto_Tag_Creator_Activator {
 	 *
 	 * Long Description.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public static function activate() {
 		

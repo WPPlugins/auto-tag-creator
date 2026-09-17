@@ -1,9 +1,13 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 
 /**
  * Fired when the plugin is uninstalled.
  * @link       http://ecreateinfotech.com/
- * @since      1.0.2
+ * @since      1.0.3
  *
  * @package    Ec_Auto_Tag_Creator
  */

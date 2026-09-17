@@ -1,9 +1,9 @@
 === Auto Tag Creator ===
 Contributors: ecreateinfotech, gb071
-Tags: post tag creator, product tag creator, tag, auto tag, tag creator, tag generator
+Tags: seo,tags,keywords,content,posts
 Requires at least: 4.6
-Tested up to: 6.0.2
-Stable tag: 1.0.2
+Tested up to: 7.1
+Stable tag: 1.0.3
 Requires PHP: 5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -58,5 +58,5 @@ No. It will not handle the process automatically, you need to update older post 
 
 == Changelog ==
 
-= 1.0.2 =
+= 1.0.3 =
 * First version.

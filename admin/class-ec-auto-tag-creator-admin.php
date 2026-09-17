@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 
 /**
  * The admin-specific functionality of the plugin.
@@ -16,7 +20,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.2
+	 * @since    1.0.3
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -25,7 +29,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.2
+	 * @since    1.0.3
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -34,7 +38,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.2
+	 * @since    1.0.3
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
@@ -48,7 +52,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
-	 * @since    1.0.2
+	 * @since    1.0.3
 	 */
 	public function enqueue_styles() {
 		
@@ -59,18 +63,26 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Register the JavaScript for the admin area.
 	 *
-	 * @since    1.0.2
+	 * @since    1.0.3
 	 */
 	public function enqueue_scripts() {
 		
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/ec-auto-tag-creator-admin.js', array( 'jquery' ), $this->version, true );
+
+		wp_localize_script(
+			$this->plugin_name,
+			'ec_auto_tag_creator',
+			array(
+				'security' => wp_create_nonce( 'ec_auto_tag_creator_nonce' ),
+			)
+		);
 		
 	}
 	
 	/**
 	 * Setting menu page for plugin.
 	 *
-	 * @since    1.0.2
+	 * @since    1.0.3
 	 */
 	public function add_setting_menu_page() {
 		add_menu_page(__('Tag Setting', 'ec-auto-tag-creator'),__('Tag Setting', 'ec-auto-tag-creator'),'manage_options','ec-auto-tag-setting',array($this, 'auto_tag_settings_callback'),'dashicons-tag',99);
@@ -79,7 +91,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Setting page form template.
 	 *
-	 * @since    1.0.2
+	 * @since    1.0.3
 	 */
 	public function auto_tag_settings_callback() {
 		
@@ -92,48 +104,43 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Save setting.
 	 *
-	 * @since    1.0.2
+	 * @since    1.0.3
 	 */
 	public function tag_save_settings_callback() {
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error(
+				array(
+					'msg' => __( 'Unauthorized access.', 'ec-auto-tag-creator' ),
+				),
+				403
+			);
+		}
+
+		check_ajax_referer( 'ec_auto_tag_creator_nonce', 'security' );
 		
 		$save_setting = array();
-		
-		$save_setting['enable_post_title']  =  '0';
-		$save_setting['enable_post_category']  =  '0';
-		$save_setting['enable_product_title']  =  '0';
-		$save_setting['enable_product_category']  =  '0';
-		$save_setting['overwrite_tag']  =  '0';
-		$save_setting['minimum_word']  =  '';
-		$save_setting['ignore_words']  =  '';		
-		
-		if( isset($_POST['enable_post_title']) && $_POST['enable_post_title']!='' ) {
-			$save_setting['enable_post_title'] = '1';
-		}
-		
-		if( isset($_POST['enable_post_category']) && $_POST['enable_post_category']!='' ) {
-			$save_setting['enable_post_category'] = '1';
-		}
-		
-		if( isset($_POST['enable_product_title']) && $_POST['enable_product_title']!='' ) {
-			$save_setting['enable_product_title'] = '1';
-		}
-		
-		if( isset($_POST['enable_product_category']) && $_POST['enable_product_category']!='' ) {
-			$save_setting['enable_product_category'] = '1';
-		}
-		
-		if( isset($_POST['overwrite_tag']) && trim($_POST['overwrite_tag'])!='' ) {
-			$save_setting['overwrite_tag'] = '1';
-		}
-		
-		if( isset($_POST['minimum_word']) && trim($_POST['minimum_word'])!='' ) {
-			$save_setting['minimum_word'] = sanitize_text_field($_POST['minimum_word']);
-		}
-		
-		if( isset($_POST['ignore_words']) && trim($_POST['ignore_words'])!='' ) {
-			$save_setting['ignore_words'] = sanitize_textarea_field($_POST['ignore_words']);
-		}
-		
+
+		$save_setting['enable_post_title'] = isset( $_POST['enable_post_title'] ) ? '1' : '0';
+
+		$save_setting['enable_post_category'] = isset( $_POST['enable_post_category'] ) ? '1' : '0';
+
+		$save_setting['enable_product_title'] = isset( $_POST['enable_product_title'] ) ? '1' : '0';
+
+		$save_setting['enable_product_category'] = isset( $_POST['enable_product_category'] ) ? '1' : '0';
+
+		$save_setting['overwrite_tag'] = isset( $_POST['overwrite_tag'] ) ? '1' : '0';
+
+		$save_setting['minimum_word'] = isset( $_POST['minimum_word'] )
+			? absint( wp_unslash( $_POST['minimum_word'] ) )
+			: 0;
+
+		$save_setting['ignore_words'] = isset( $_POST['ignore_words'] )
+			? sanitize_textarea_field(
+				wp_unslash( $_POST['ignore_words'] )
+			)
+			: '';
+
 		update_option( 'ec_auto_tag_creator_setting', $save_setting );
 		
 		$response = array(
@@ -148,7 +155,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Create tags when publishing or updating post.
 	 *
-	 * @since    1.0.2
+	 * @since    1.0.3
 	 */
 	public function create_tags( $post_id ) {
 		
@@ -173,7 +180,13 @@ class Ec_Auto_Tag_Creator_Admin {
 		$ignore_list = array();
 		if( trim($settings['ignore_words'])!='' ) {
 			$ignore_words = strtolower(trim($settings['ignore_words']));
-			$ignore_list = array_map( 'trim',array_filter(explode(',',$ignore_words)) );
+			$ignore_list = array_map(
+				function( $word ) {
+					$word = strtolower( trim( $word ) );
+					return preg_replace( '/[^\p{L}\p{N}]+/u', '', $word );
+				},
+				array_filter( explode( ',', $ignore_words ) )
+			);
 		}
 		
 		$len = 1;
@@ -207,7 +220,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Create tags from title.
 	 *
-	 * @since    1.0.2
+	 * @since    1.0.3
 	 */
 	public function prepare_title_to_tag( $title, $ignore_list, $len ) {
 		
@@ -228,7 +241,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Create tags from category.
 	 *
-	 * @since    1.0.2
+	 * @since    1.0.3
 	 */
 	public function parepare_category_to_tag( $categories, $ignore_list, $len ) {
 		
@@ -252,13 +265,15 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Create tags from words.
 	 *
-	 * @since    1.0.2
+	 * @since    1.0.3
 	 */
 	public function words_to_tag( $words, $ignore_list, $len ) {
 		
 		$word_tag = array();
 		foreach ( $words as $word ) {
-			if( strlen($word) >= $len && !in_array( $word, $ignore_list )) {
+			$word = strtolower( trim( $word ) );
+			$word = preg_replace( '/[^\p{L}\p{N}]+/u', '', $word );
+			if( strlen($word) >= $len && !in_array( $word, $ignore_list, true ) ) {
 				$word_tag[] = $word;						
 			}
 		}
@@ -270,7 +285,7 @@ class Ec_Auto_Tag_Creator_Admin {
 	/**
 	 * Set created tag by id.
 	 *
-	 * @since    1.0.2
+	 * @since    1.0.3
 	 */
 	public function set_tag( $post_id, $title_tags, $cat_tags, $term, $is_overwrite_tag ) {
 		

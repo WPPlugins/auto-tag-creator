@@ -5,7 +5,7 @@ function auto_tag_save_settings() {
 	jQuery.ajax({
 		type: "POST",
 		url: ajaxurl,
-		data:'action=tag_save_settings&'+setting_from,
+		data:'action=tag_save_settings&security='+ec_auto_tag_creator.security+'&'+setting_from,
 		beforeSend: function() {
 			jQuery("#submit_settings").prop('disabled', true);
 			jQuery(".success_message").hide("slow");			

@@ -1,18 +1,20 @@
-=== Auto Tag Creator ===
+=== Auto Tag Creator - Automatic Tags for Posts and WooCommerce Products ===
 Contributors: ecreateinfotech, gb071
-Tags: tags, auto tagging, woocommerce, seo, keywords
-Requires at least: 4.6
+Tags: auto tagging, automatic tags, tag generator, post tags, woocommerce tags
+Requires at least: 4.7
 Tested up to: 7.1
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Automatically creates tags from post and product titles and categories when you publish or update.
+Automatically add tags to posts and WooCommerce products from their titles and categories, and bulk tag what you already published.
 
 == Description ==
 
-Auto Tag Creator adds tags to your posts and WooCommerce products for you. When you publish or update an item, the plugin takes the words from its title and category names and saves them as tags. You decide which words to skip, how long a word must be, and how many tags each item gets.
+Auto Tag Creator is an automatic tagging plugin for WordPress posts and WooCommerce products. It works as a tag generator: when you publish or update an item, it takes the words from its title and category names and saves them as post tags or product tags. You decide which words to skip, how long a word must be, and how many tags each item gets.
+
+If you have ever published a post and forgotten the tags, or inherited a site with thousands of untagged products, this does the tagging for you and can tag everything you have already published in bulk.
 
 It is a good fit for blogs, news sites, community sites and online stores where content is added often and tags are easy to forget.
 
@@ -38,7 +40,7 @@ Say you publish a post titled "Easy Tomato Soup Recipe" in the category "Healthy
 
 = Need it for other post types? =
 
-Auto Tag Creator works with posts and WooCommerce products. If you need the same feature for a custom post type, or any other custom WordPress work, please [contact us](http://ecreateinfotech.com/contact/).
+Auto Tag Creator works with posts and WooCommerce products. If you need the same feature for a custom post type, or any other custom WordPress work, please [contact us](https://www.ecreateinfotech.com/contact/?utm_source=wp-plugin&utm_medium=readme&utm_campaign=auto-tag-creator).
 
 == Installation ==
 
@@ -52,6 +54,18 @@ That's it. New and updated posts and products will now be tagged automatically. 
 To install manually, upload the plugin folder to the `/wp-content/plugins/` directory and activate the plugin from the Plugins page.
 
 == Frequently Asked Questions ==
+
+= How do I add tags automatically in WordPress? =
+
+Install the plugin and publish or update a post. Tags are created from the title and the categories, with no further work. Everything it does is controlled under Tag Setting in the admin menu.
+
+= Can I bulk tag posts and products I have already published? =
+
+Yes. Tag Setting has a bulk tagging tool with a progress bar that tags existing posts and WooCommerce products in batches, so a large catalogue does not time out.
+
+= Does it create WooCommerce product tags as well as post tags? =
+
+Yes. Product tagging can be switched on or off separately from post tagging, and it covers products added through the WooCommerce REST API, CSV imports and other plugins.
 
 = Does the plugin turn every word into a tag? =
 
@@ -75,7 +89,7 @@ Yes. Turn on product tagging in the settings and the plugin will create product 
 
 = Does it work with custom post types? =
 
-Not at the moment. The plugin supports posts and WooCommerce products. If you need it for a custom post type, please [contact us](http://ecreateinfotech.com/contact/).
+Not at the moment. The plugin supports posts and WooCommerce products. If you need it for a custom post type, please [contact us](https://www.ecreateinfotech.com/contact/?utm_source=wp-plugin&utm_medium=readme&utm_campaign=auto-tag-creator).
 
 = Why do some tags not use the letter case I selected? =
 
@@ -94,6 +108,12 @@ No. Settings are kept when the plugin is deactivated. They are removed only when
 5. WooCommerce products list with tags created from product names and categories.
 
 == Changelog ==
+
+= 1.1.1 =
+* Added: "More free plugins by Ecreate" panel on the settings page, kept up to date from WordPress.org.
+* Changed: Plugin URI updated to the new services page.
+* Changed: Minimum WordPress version is now 4.7, which the plugin already required.
+* Removed: Unnecessary translation loading. WordPress loads plugin translations automatically.
 
 = 1.1.0 =
 * Added: Built-in list of common English words to skip.
